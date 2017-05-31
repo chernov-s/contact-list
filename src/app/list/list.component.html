@@ -1,0 +1,41 @@
+<div class="contact">
+    <div class="contact-action">
+        <form (ngSubmit)="addItem()" #listForm="ngForm">
+            <div class="row">
+                <div class="input-field col s5">
+                    <label for="name"></label>
+                    <input type="text" class="validate" name="name"  [(ngModel)]="input.name" id="name" placeholder="имя">
+                </div>
+                <div class="input-field col s5">
+                    <label for="phone"></label>
+                    <input type="text" class="validate" name="phone"  [(ngModel)]="input.phone" id="phone" placeholder="Телефон">
+                </div>
+                <div class="input-field col s2">
+                    <button class="add" class="btn"> Добавить </button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text"
+                       [(ngModel)]="query"
+                       placeholder="Поиск">
+            </div>
+        </div>
+    </div>
+    <ul class="collection">
+        <li class="collection-item" [hidden]="this.items.values.length > 0">Список пуст</li>
+        <li class="collection-item avatar"
+                *ngFor="let item of getItems() let i = index">
+            <img src="http://materializecss.com/images/yuna.jpg" alt=""  class="circle">
+            <a href="#" routerLink="/contact/{{item.id}}">
+                <span class="title" innerHTML="{{item.name}}"></span>
+            </a>
+            <p innerHTML="{{item.phone}}"></p>
+            <a href="javascript:void(0)" class="secondary-content" (click)="removeItem(i)" >
+                <i class="material-icons">delete</i>
+            </a>
+        </li>
+
+    </ul>
+</div>
